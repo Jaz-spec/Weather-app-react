@@ -15,6 +15,15 @@ function App() {
 				<li>humidity: 44%</li>
 				<li>wind speed: 15km/h</li>
 			</ul>
+			<div>
+				Coded by Jaz and open sourced on
+				<a
+					href="https://github.com/Jaz-spec/Weather-app-react"
+					target="_blank"
+					rel="noreferrer">
+					GitHub
+				</a>
+			</div>
 		</div>
 	);
 }
