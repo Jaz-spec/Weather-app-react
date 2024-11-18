@@ -1,9 +1,80 @@
+:root {
+	--highlight-color: #858c72;
+	--text-color: #c8ceb8;
+	--background-color: #1b1b1f;
+	--border-radius: 5px;
+}
+
+body {
+	background-color: var(--background-color);
+}
+
 .App {
-	text-align: center;
-	margin-top: 40px;
+	font-family: "Roboto", serif;
+	margin: 40px auto;
+	max-width: 70%;
+	border: solid 2px var(--highlight-color);
+	border-radius: var(--border-radius);
+	padding: 40px;
+	padding-bottom: 5px;
+	color: var(--text-color);
+}
+
+form {
+	display: flex;
+	justify-content: center;
+}
+
+input {
+	padding: 10px 20px;
+	font-size: 15px;
+	border-radius: var(--border-radius);
+}
+
+.input-text {
+	flex: 4;
+	background-color: transparent;
+	border: solid 2px var(--color2);
+	color: var(--color1);
+}
+
+.input-text:focus {
+	border: solid 3px var(--color2);
+	outline: none;
+}
+
+.input-submit {
+	flex: 1;
+	margin-left: 5px;
+	border: solid 2px var(--color2);
+	color: var(--color1);
+}
+
+.title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 80px;
+	margin-top: 60px;
+}
+
+h1,
+h2 {
+	font-size: 70px;
+}
+
+.degrees {
+	font-size: 30px;
+	vertical-align: super;
 }
 
 ul {
 	list-style: none;
 	padding-left: 0;
+}
+
+.footer {
+	text-align: center;
+	margin-top: 40px;
+	font-size: small;
 }
