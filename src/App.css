@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-	max-width: 70%;
+	max-width: 60%;
 	border-top: solid 4px var(--highlight-color);
 	border-bottom: solid 4px var(--highlight-color);
 	padding: 40px;
@@ -51,7 +51,7 @@ input {
 
 .input-submit {
 	flex: 1;
-	margin-left: 5px;
+	margin-left: 10px;
 	border: solid 2px var(--highlight-color);
 	color: var(--text-color);
 	background-color: transparent;
