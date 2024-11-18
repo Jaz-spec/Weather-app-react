@@ -11,13 +11,15 @@ body {
 
 .App {
 	font-family: "Roboto", serif;
-	margin: 40px auto;
-	max-width: 70%;
-	border: solid 2px var(--highlight-color);
-	border-radius: var(--border-radius);
-	padding: 40px;
-	padding-bottom: 5px;
 	color: var(--text-color);
+}
+
+.container {
+	max-width: 70%;
+	border-top: solid 4px var(--highlight-color);
+	border-bottom: solid 4px var(--highlight-color);
+	padding: 40px;
+	margin: 40px auto 0 auto;
 }
 
 form {
@@ -34,33 +36,42 @@ input {
 .input-text {
 	flex: 4;
 	background-color: transparent;
-	border: solid 2px var(--color2);
-	color: var(--color1);
+	border: solid 2px var(--highlight-color);
+	color: var(--text-color);
+}
+
+::placeholder {
+	color: var(--text-color);
 }
 
 .input-text:focus {
-	border: solid 3px var(--color2);
+	border: solid 2px var(--text-color);
 	outline: none;
 }
 
 .input-submit {
 	flex: 1;
 	margin-left: 5px;
-	border: solid 2px var(--color2);
-	color: var(--color1);
+	border: solid 2px var(--highlight-color);
+	color: var(--text-color);
+	background-color: transparent;
+}
+
+.title-position {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
 }
 
 .title {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 80px;
-	margin-top: 60px;
+	margin-bottom: 40px;
 }
 
 h1,
 h2 {
 	font-size: 70px;
+	line-height: 70px;
+	margin-bottom: 0;
 }
 
 .degrees {
@@ -71,10 +82,21 @@ h2 {
 ul {
 	list-style: none;
 	padding-left: 0;
+	width: 200px;
+}
+
+li {
+	border-bottom: solid 1px var(--highlight-color);
+	padding-bottom: 4px;
+	margin-bottom: 6px;
 }
 
 .footer {
 	text-align: center;
-	margin-top: 40px;
+	margin-top: 10px;
 	font-size: small;
+}
+
+.footer a {
+	color: var(--text-color);
 }
