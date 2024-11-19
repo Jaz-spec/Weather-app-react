@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
-import FormattedDate from "./FormattedDate.js";
+import WeatherData from "./WeatherData";
 
 function App(props) {
 	const [weatherData, setWeatherData] = useState({ ready: false });
@@ -31,23 +31,7 @@ function App(props) {
 						/>
 						<input className="input-submit" type="submit" />
 					</form>
-					<div className="title">
-						<div className="title-position">
-							<h1>{weatherData.city}</h1>
-							<h2>
-								{Math.round(weatherData.temperature)}
-								<span className="degrees">°C</span>
-							</h2>
-						</div>
-						<div className="date">
-							<FormattedDate date={weatherData.time} />
-						</div>
-					</div>
-					<ul>
-						<li>condition: {weatherData.condition}</li>
-						<li>humidity: {weatherData.humidity}%</li>
-						<li>wind speed: {weatherData.wind}km/h</li>
-					</ul>
+					<WeatherData data={weatherData} />
 				</div>
 				<div className="footer">
 					Coded by Jaz and open sourced on{" "}
