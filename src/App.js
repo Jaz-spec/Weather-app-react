@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
+import FormattedDate from "./FormattedDate.js";
 
 function App(props) {
 	const [weatherData, setWeatherData] = useState({ ready: false });
@@ -8,6 +9,7 @@ function App(props) {
 		setWeatherData({
 			ready: true,
 			city: response.data.city,
+			time: new Date(response.data.time * 1000),
 			condition: response.data.condition.description,
 			temperature: response.data.temperature.current,
 			humidity: response.data.temperature.humidity,
@@ -24,6 +26,7 @@ function App(props) {
 							className="input-text"
 							type="text"
 							placeholder="Enter a city here..."
+							id="inputValue"
 							required
 						/>
 						<input className="input-submit" type="submit" />
@@ -36,7 +39,9 @@ function App(props) {
 								<span className="degrees">°C</span>
 							</h2>
 						</div>
-						<div className="date">Thursday 31 October</div>
+						<div className="date">
+							<FormattedDate date={weatherData.time} />
+						</div>
 					</div>
 					<ul>
 						<li>condition: {weatherData.condition}</li>
@@ -62,5 +67,4 @@ function App(props) {
 		return "Loading...";
 	}
 }
-
 export default App;
