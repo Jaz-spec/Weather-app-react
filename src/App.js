@@ -5,7 +5,30 @@ import WeatherData from "./WeatherData";
 
 function App(props) {
 	const [weatherData, setWeatherData] = useState({ ready: false });
+	const [cityInput, setCityInput] = useState(props.city);
+
+	function handleChange(event) {
+		//Sets city value as user types
+		setCityInput(event.target.value);
+	}
+
+	function handleSubmit(event) {
+		//Sends city value to search function when user submits
+		event.preventDefault();
+		search(cityInput);
+		console.log(`Searching for ${cityInput}`);
+	}
+
+	function search(cityInput) {
+		//Sends API data to handle response function
+		const apiKey = "oa9f439cb230f940atf8b1fac2e41075";
+		const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityInput}&key=${apiKey}&units=metric`;
+		axios.get(apiUrl).then(handleResponse);
+		console.log("retreiving data");
+	}
+
 	function handleResponse(response) {
+		//formats data from API
 		setWeatherData({
 			ready: true,
 			city: response.data.city,
@@ -18,18 +41,24 @@ function App(props) {
 	}
 
 	if (weatherData.ready) {
+		// displays if weather data has been set
 		return (
 			<div className="App">
 				<div className="container">
 					<form>
 						<input
+							onChange={handleChange}
 							className="input-text"
 							type="text"
 							placeholder="Enter a city here..."
 							id="inputValue"
 							required
 						/>
-						<input className="input-submit" type="submit" />
+						<input
+							onClick={handleSubmit}
+							className="input-submit"
+							type="submit"
+						/>
 					</form>
 					<WeatherData data={weatherData} />
 				</div>
@@ -45,9 +74,7 @@ function App(props) {
 			</div>
 		);
 	} else {
-		const apiKey = "oa9f439cb230f940atf8b1fac2e41075";
-		const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.city}&key=${apiKey}&units=metric`;
-		axios.get(apiUrl).then(handleResponse);
+		search(cityInput);
 		return "Loading...";
 	}
 }
