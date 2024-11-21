@@ -29,6 +29,7 @@ function App(props) {
 
 	function handleResponse(response) {
 		//formats data from API
+		console.log(response);
 		setWeatherData({
 			ready: true,
 			city: response.data.city,
@@ -37,6 +38,8 @@ function App(props) {
 			temperature: response.data.temperature.current,
 			humidity: response.data.temperature.humidity,
 			wind: response.data.wind.speed,
+			icon: response.data.condition.icon,
+			iconUrl: response.data.condition.icon_url,
 		});
 	}
 

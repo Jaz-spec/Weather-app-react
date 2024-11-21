@@ -71,12 +71,22 @@ h1,
 h2 {
 	font-size: 70px;
 	line-height: 70px;
-	margin-bottom: 0;
+	margin-bottom: 5px;
 }
 
 .degrees {
 	font-size: 30px;
 	vertical-align: super;
+}
+
+.icon-container {
+	display: flex;
+	align-items: baseline;
+}
+
+.icon-container img {
+	position: relative;
+	top: 20px;
 }
 
 ul {
