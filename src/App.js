@@ -6,10 +6,15 @@ import WeatherData from "./WeatherData";
 function App(props) {
 	const [weatherData, setWeatherData] = useState({ ready: false });
 	const [cityInput, setCityInput] = useState(props.city);
+	const [formValues, setFormValues] = useState({ name: "" });
 
 	function handleChange(event) {
 		//Sets city value as user types
-		setCityInput(event.target.value);
+		setFormValues({ name: event.target.value });
+		console.log(formValues);
+		if (formValues.name.length > 0) {
+			setCityInput(event.target.value);
+		} else console.log("stopped");
 	}
 
 	function handleSubmit(event) {
@@ -17,6 +22,7 @@ function App(props) {
 		event.preventDefault();
 		search(cityInput);
 		console.log(`Searching for ${cityInput}`);
+		setFormValues({ name: "" });
 	}
 
 	function search(cityInput) {
@@ -48,12 +54,13 @@ function App(props) {
 		return (
 			<div className="App">
 				<div className="container">
-					<form>
+					<form onSubmit={handleSubmit}>
 						<input
 							onChange={handleChange}
 							className="input-text"
+							value={formValues.name}
 							type="text"
-							placeholder="Enter a city here..."
+							placeholder="Enter a city..."
 							id="inputValue"
 							required
 						/>
@@ -81,4 +88,5 @@ function App(props) {
 		return "Loading...";
 	}
 }
+
 export default App;
