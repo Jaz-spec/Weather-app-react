@@ -8,6 +8,7 @@ function App(props) {
 	const [cityInput, setCityInput] = useState(props.city);
 	const [formValues, setFormValues] = useState({ name: "" });
 	const [buttonText, setButtonText] = useState("Submit");
+	const [errorMessage, setErrorMessage] = useState("");
 
 	function handleChange(event) {
 		//Sets city value as user types
@@ -21,6 +22,7 @@ function App(props) {
 		//Sends city value to search function when user submits
 		event.preventDefault();
 		setButtonText("Loading...");
+		setErrorMessage("");
 		search(cityInput);
 		console.log(`Searching for ${cityInput}`);
 		setFormValues({ name: "" });
@@ -36,26 +38,33 @@ function App(props) {
 
 	function handleResponse(response) {
 		//formats data from API
-		console.log(response);
-		setButtonText("Submit");
-
-		setWeatherData({
-			ready: true,
-			city: response.data.city,
-			time: new Date(response.data.time * 1000),
-			condition: response.data.condition.description,
-			temperature: response.data.temperature.current,
-			humidity: response.data.temperature.humidity,
-			wind: response.data.wind.speed,
-			icon: response.data.condition.icon,
-			iconUrl: response.data.condition.icon_url,
-		});
+		try {
+			if (response.data.status === "not_found") {
+				console.log(response.data.message);
+				setErrorMessage(response.data.message);
+			}
+			console.log(response);
+			setButtonText("Submit");
+			setWeatherData({
+				ready: true,
+				city: response.data.city,
+				time: new Date(response.data.time * 1000),
+				condition: response.data.condition.description,
+				temperature: response.data.temperature.current,
+				humidity: response.data.temperature.humidity,
+				wind: response.data.wind.speed,
+				icon: response.data.condition.icon,
+				iconUrl: response.data.condition.icon_url,
+			});
+		} catch (error) {
+			console.log("error");
+		}
 	}
 
 	if (weatherData.ready) {
 		// displays if weather data has been set
 		return (
-			<div className="App">
+			<div id="app" className="App">
 				<div className="container">
 					<form onSubmit={handleSubmit}>
 						<input
@@ -75,6 +84,7 @@ function App(props) {
 							value={buttonText}
 						/>
 					</form>
+					<div className="error-message">{errorMessage}</div>
 					<WeatherData data={weatherData} />
 				</div>
 				<div className="footer">

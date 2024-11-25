@@ -63,6 +63,11 @@ input {
 	background-color: transparent;
 }
 
+.error-message {
+	margin-top: 5px;
+	font-weight: bold;
+}
+
 .input-submit:hover {
 	border: solid 2px var(--text-color);
 }
