@@ -12,6 +12,8 @@ export default function FormattedDate(props) {
 				return "nd";
 			case 3:
 				return "rd";
+			default:
+				return "th";
 		}
 	}
 
