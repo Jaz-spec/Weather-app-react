@@ -9,6 +9,12 @@ body {
 	background-color: var(--background-color);
 }
 
+.loading {
+	text-align: center;
+	margin-top: 150px;
+	color: var(--text-color);
+}
+
 .App {
 	font-family: "Roboto", serif;
 	color: var(--text-color);
@@ -57,6 +63,10 @@ input {
 	background-color: transparent;
 }
 
+.input-submit:hover {
+	border: solid 2px var(--text-color);
+}
+
 .title-position {
 	display: flex;
 	justify-content: space-between;
@@ -77,6 +87,12 @@ h2 {
 .degrees {
 	font-size: 30px;
 	vertical-align: super;
+}
+
+.degreesLink {
+	text-decoration: none;
+	color: var(--highlight-color);
+	opacity: 0.7;
 }
 
 .icon-container {

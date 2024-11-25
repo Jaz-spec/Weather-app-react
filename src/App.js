@@ -7,19 +7,20 @@ function App(props) {
 	const [weatherData, setWeatherData] = useState({ ready: false });
 	const [cityInput, setCityInput] = useState(props.city);
 	const [formValues, setFormValues] = useState({ name: "" });
+	const [buttonText, setButtonText] = useState("Submit");
 
 	function handleChange(event) {
 		//Sets city value as user types
 		setFormValues({ name: event.target.value });
-		console.log(formValues);
 		if (formValues.name.length > 0) {
 			setCityInput(event.target.value);
-		} else console.log("stopped");
+		} else console.log("search stopped");
 	}
 
 	function handleSubmit(event) {
 		//Sends city value to search function when user submits
 		event.preventDefault();
+		setButtonText("Loading...");
 		search(cityInput);
 		console.log(`Searching for ${cityInput}`);
 		setFormValues({ name: "" });
@@ -36,6 +37,8 @@ function App(props) {
 	function handleResponse(response) {
 		//formats data from API
 		console.log(response);
+		setButtonText("Submit");
+
 		setWeatherData({
 			ready: true,
 			city: response.data.city,
@@ -63,11 +66,13 @@ function App(props) {
 							placeholder="Enter a city..."
 							id="inputValue"
 							required
+							autoComplete="off"
 						/>
 						<input
 							onClick={handleSubmit}
 							className="input-submit"
 							type="submit"
+							value={buttonText}
 						/>
 					</form>
 					<WeatherData data={weatherData} />
@@ -85,7 +90,7 @@ function App(props) {
 		);
 	} else {
 		search(cityInput);
-		return "Loading...";
+		return <div className="loading">Loading...</div>;
 	}
 }
 
