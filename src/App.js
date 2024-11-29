@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 import WeatherData from "./WeatherData";
@@ -11,8 +11,14 @@ function App(props) {
 	const [buttonText, setButtonText] = useState("Submit");
 	const [errorMessage, setErrorMessage] = useState("");
 
+	useEffect(() => {
+		//Clears form value on submit
+		setFormValues({ name: "" });
+	}, [buttonText]);
+
 	function handleChange(event) {
 		//Sets city value as user types
+		//and stops API calls when form value is cleared
 		setFormValues({ name: event.target.value });
 		if (formValues.name.length > 0) {
 			setCityInput(event.target.value);
@@ -22,15 +28,15 @@ function App(props) {
 	function handleSubmit(event) {
 		//Sends city value to search function when user submits
 		event.preventDefault();
+		search(cityInput);
+		//and manages some beauty features
 		setButtonText("Loading...");
 		setErrorMessage("");
-		search(cityInput);
 		console.log(`Searching for ${cityInput}`);
-		setFormValues({ name: "" });
 	}
 
 	function search(cityInput) {
-		//Sends API data to handle response function
+		//Makes API call and calls handle response function
 		const apiKey = "oa9f439cb230f940atf8b1fac2e41075";
 		const apiUrl = `https://api.shecodes.io/weather/v1/current?query=${cityInput}&key=${apiKey}&units=metric`;
 		axios.get(apiUrl).then(handleResponse);
@@ -38,7 +44,7 @@ function App(props) {
 	}
 
 	function handleResponse(response) {
-		//formats data from API
+		//formats data from API and catches any API errors
 		try {
 			if (response.data.status === "not_found") {
 				console.log(response.data.message);
@@ -89,7 +95,7 @@ function App(props) {
 						<div className="error-message">{errorMessage}</div>
 						<WeatherData data={weatherData} />
 					</div>
-					<WeatherForecast city={cityInput} />
+					<WeatherForecast city={weatherData.city} />
 				</div>
 				<div className="footer">
 					Coded by Jaz and open sourced on{" "}

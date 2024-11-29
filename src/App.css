@@ -21,11 +21,10 @@ body {
 }
 
 .container {
-	max-width: 700px;
+	max-width: 750px;
 	border-top: solid 4px var(--highlight-color);
 	border-bottom: solid 4px var(--highlight-color);
 	padding: 40px;
-	padding-bottom: 15px;
 	margin: 40px auto;
 	margin-bottom: 10px;
 }

@@ -1,32 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./WeatherForecast.css";
 import axios from "axios";
 import ForecastDay from "./ForecastDay";
 
 export default function WeatherForecast(props) {
-	const [forecast, setForecast] = useState({ ready: false });
+	const [ready, setReady] = useState(false);
 	const [dailyData, setDailyData] = useState();
 
+	useEffect(() => {
+		//prompts an API call when the city value changes
+		setReady(false);
+	}, [props.city]);
+
 	function search() {
+		//makes an API call
 		const apiKey = "oa9f439cb230f940atf8b1fac2e41075";
 		const apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${props.city}&key=${apiKey}&units=metric`;
 		axios.get(apiUrl).then(handleResponse);
-		return null;
 	}
 
 	function handleResponse(response) {
-		setForecast({ ready: true });
+		//stores response in {dailyData}
+		setReady(true);
 		setDailyData(response.data.daily);
 	}
 
-	if (forecast.ready) {
+	if (ready) {
+		//renders the forecast if data is ready
 		return (
 			<div className="forecastContainer">
-				<ForecastDay data={dailyData[1]} />
-				<ForecastDay data={dailyData[2]} />
-				<ForecastDay data={dailyData[3]} />
-				<ForecastDay data={dailyData[4]} />
-				<ForecastDay data={dailyData[5]} />
+				{dailyData.map((daily, index) => {
+					//loops through array of days and sends data to ForecastDay component
+					if (index < 6 && index > 0) {
+						return <ForecastDay data={daily} key={index} />;
+					}
+				})}
 			</div>
 		);
 	} else {
