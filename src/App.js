@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
 import WeatherData from "./WeatherData";
+import WeatherForecast from "./WeatherForecast";
 
 function App(props) {
 	const [weatherData, setWeatherData] = useState({ ready: false });
@@ -65,27 +66,30 @@ function App(props) {
 		// displays if weather data has been set
 		return (
 			<div id="app" className="App">
-				<div className="container">
-					<form onSubmit={handleSubmit}>
-						<input
-							onChange={handleChange}
-							className="input-text"
-							value={formValues.name}
-							type="text"
-							placeholder="Enter a city..."
-							id="inputValue"
-							required
-							autoComplete="off"
-						/>
-						<input
-							onClick={handleSubmit}
-							className="input-submit"
-							type="submit"
-							value={buttonText}
-						/>
-					</form>
-					<div className="error-message">{errorMessage}</div>
-					<WeatherData data={weatherData} />
+				<div className="flexContainer">
+					<div className="container">
+						<form onSubmit={handleSubmit}>
+							<input
+								onChange={handleChange}
+								className="input-text"
+								value={formValues.name}
+								type="text"
+								placeholder="Enter a city..."
+								id="inputValue"
+								required
+								autoComplete="off"
+							/>
+							<input
+								onClick={handleSubmit}
+								className="input-submit"
+								type="submit"
+								value={buttonText}
+							/>
+						</form>
+						<div className="error-message">{errorMessage}</div>
+						<WeatherData data={weatherData} />
+					</div>
+					<WeatherForecast className="weatherForeacast" />
 				</div>
 				<div className="footer">
 					Coded by Jaz and open sourced on{" "}

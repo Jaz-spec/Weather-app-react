@@ -1,0 +1,35 @@
+:root {
+	--highlight-color: #858c72;
+	--text-color: #c8ceb8;
+	--background-color: #1b1b1f;
+	--border-radius: 5px;
+}
+
+.forecastContainer {
+	display: flex;
+	justify-content: space-between;
+	max-width: 700px;
+	text-align: center;
+	margin: 10px auto;
+}
+
+.dayContainer {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+
+.icon {
+	margin: 20px auto;
+}
+
+.temperatures {
+	display: flex;
+	justify-content: space-between;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.tempLow {
+	color: var(--highlight-color);
+}
