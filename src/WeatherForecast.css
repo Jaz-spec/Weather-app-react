@@ -20,12 +20,12 @@
 }
 
 .icon {
-	margin: 20px auto;
+	max-width: 85px;
 }
 
 .temperatures {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	font-size: 18px;
 	font-weight: 500;
 }

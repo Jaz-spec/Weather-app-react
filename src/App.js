@@ -89,7 +89,7 @@ function App(props) {
 						<div className="error-message">{errorMessage}</div>
 						<WeatherData data={weatherData} />
 					</div>
-					<WeatherForecast className="weatherForeacast" />
+					<WeatherForecast city={cityInput} />
 				</div>
 				<div className="footer">
 					Coded by Jaz and open sourced on{" "}
