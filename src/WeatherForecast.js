@@ -33,7 +33,7 @@ export default function WeatherForecast(props) {
 					//loops through array of days and sends data to ForecastDay component
 					if (index < 6 && index > 0) {
 						return <ForecastDay data={daily} key={index} />;
-					}
+					} else return null;
 				})}
 			</div>
 		);
