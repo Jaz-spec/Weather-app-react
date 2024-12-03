@@ -1,0 +1,33 @@
+:root {
+	--highlight-color: #858c72;
+	--text-color: #c8ceb8;
+	--background-color: #1b1b1f;
+}
+
+.loading {
+	font-size: 30px;
+}
+
+@keyframes loading {
+	0%,
+	60%,
+	100% {
+		transform: translateY(0);
+	}
+	30% {
+		transform: translateY(-5px);
+	}
+}
+
+.dot1 {
+	display: inline-block;
+	animation: loading 1s linear infinite;
+}
+.dot2 {
+	display: inline-block;
+	animation: loading 1s 0.2s infinite;
+}
+.dot3 {
+	display: inline-block;
+	animation: loading 1s 0.4s infinite;
+}

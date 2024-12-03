@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
+import "./Loading.css";
 import WeatherData from "./WeatherData";
 import WeatherForecast from "./WeatherForecast";
 
@@ -110,7 +111,13 @@ function App(props) {
 		);
 	} else {
 		search(cityInput);
-		return <div className="loading">Loading...</div>;
+		return (
+			<h1 className="loading">
+				Loading<span class="dot1">.</span>
+				<span class="dot2">.</span>
+				<span class="dot3">.</span>
+			</h1>
+		);
 	}
 }
 
