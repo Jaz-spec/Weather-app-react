@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { TemperatureContext } from "./context";
 
 export default function Temperature(props) {
-	const [degrees, setdegrees] = useState("celsius");
+	const { degrees, setDegrees } = useContext(TemperatureContext);
+	console.log(degrees);
 	function showFahrenheit(event) {
 		event.preventDefault();
-		setdegrees("fahrenheit");
+		setDegrees("fahrenheit");
 	}
 
 	function showCelsius(event) {
 		event.preventDefault();
-		setdegrees("celsius");
+		setDegrees("celsius");
 	}
 
 	function convertToFahrenheit() {
