@@ -113,9 +113,9 @@ function App(props) {
 		search(cityInput);
 		return (
 			<h1 className="loading">
-				Loading<span class="dot1">.</span>
-				<span class="dot2">.</span>
-				<span class="dot3">.</span>
+				Loading<span className="dot1">.</span>
+				<span className="dot2">.</span>
+				<span className="dot3">.</span>
 			</h1>
 		);
 	}

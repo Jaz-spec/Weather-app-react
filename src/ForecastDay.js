@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TemperatureContext } from "./context";
 
 export default function ForecastDay(props) {
+	const { degrees } = useContext(TemperatureContext);
+	let maxTemp = Math.round(props.data.temperature.maximum);
+	let minTemp = Math.round(props.data.temperature.minimum);
+
+	function convertToFahrenheit(temp) {
+		return (temp * 9) / 5 + 32;
+	}
 	function day() {
 		let date = new Date(props.data.time * 1000);
 		let day = date.getDay();
@@ -15,6 +23,11 @@ export default function ForecastDay(props) {
 		];
 		return days[day];
 	}
+	if (degrees !== "celsius") {
+		maxTemp = Math.round(convertToFahrenheit(props.data.temperature.maximum));
+		minTemp = Math.round(convertToFahrenheit(props.data.temperature.minimum));
+	}
+
 	return (
 		<div className="dayContainer">
 			<div className="day">{day()}</div>
@@ -24,12 +37,8 @@ export default function ForecastDay(props) {
 				alt={props.data.condition.description}
 			/>
 			<div className="temperatures">
-				<div className="tempHigh">
-					{Math.round(props.data.temperature.maximum)}°
-				</div>
-				<div className="tempLow">
-					{Math.round(props.data.temperature.minimum)}°
-				</div>
+				<div className="tempHigh">{maxTemp}°</div>
+				<div className="tempLow">{minTemp}°</div>
 			</div>
 		</div>
 	);
