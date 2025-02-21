@@ -1,3 +1,4 @@
+//Provides context for global temperature variables
 import React, { createContext, useState } from "react";
 
 export const TemperatureContext = createContext({ degrees: "celsius" });
